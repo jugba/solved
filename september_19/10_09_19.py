@@ -23,10 +23,10 @@ def maximum_product_of_three(lst):
           max_p = t 
   return max_p
 
-def maximum_two(nums):
-  sorted_nums = nums.sort()
-  largest_three = sorted_nums[-3:]
-  smallest_three = sorted_nums[:3]
+def maximumProduct(nums):
+  nums.sort()
+  largest_three = nums[-3:]
+  smallest_three = nums[:3]
   m_m  = 1
   for i in largest_three:
     m_m * i
