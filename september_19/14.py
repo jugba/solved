@@ -14,6 +14,25 @@ Your solution should run in linear time.
 
 Here's a starting point:
 """
+import math
+from typing import List
+
+def maximumSum1(a: List[int]) -> int:
+  ignored, notignored, res = 0, 0, a[0]
+  for num in a:
+    if num >= 0:
+      ignored += num
+      notignored += num
+    else:
+      ignored = max(ignored + num, notignored)
+      notignored += num
+        
+    res = max([res, ignored if ignored != 0 else -math.inf, notignored if notignored != 0 else -math.inf])
+    if ignored < 0: ignored = 0
+    if notignored < 0: notignored = 0
+  return max(res, max(a))
+
+print(maximumSum1([11,-10,-11,8,7,-6,9,4,11,6,5,0]))
 
 def maximumSum(arr):
         """
@@ -39,6 +58,7 @@ def maximumSum(arr):
                 curr_max += dele
                 curr_max -= arr[i] 
                 dele = arr[i]
+
             if curr_max < arr[i]:
                 curr_max = arr[i]
                 has_rem = None
